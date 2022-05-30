@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-rock-paper-scissors/static/css/main.070c87e4.css",
+    "main.js": "/react-rock-paper-scissors/static/js/main.f976398f.js",
+    "index.html": "/react-rock-paper-scissors/index.html",
+    "main.070c87e4.css.map": "/react-rock-paper-scissors/static/css/main.070c87e4.css.map",
+    "main.f976398f.js.map": "/react-rock-paper-scissors/static/js/main.f976398f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.070c87e4.css",
+    "static/js/main.f976398f.js"
+  ]
+}
