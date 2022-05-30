@@ -1,41 +1,18 @@
 import "./App.css";
 import { useState } from "react";
 import { FaHandRock, FaHandPaper, FaHandScissors } from "react-icons/fa";
+
 const actions = {
   rock: "scissors",
   paper: "rock",
   scissors: "paper",
 };
-const randomAction = () => {
-  // const actions = {
-  //   rock: "scissors",
-  //   paper: "rock",
-  //   scissors: "paper",
-  // };
+function randomAction ()  {
   const keys = Object.keys(actions);
   const index = Math.floor(Math.random() * keys.length);
   return keys[index];
 };
-const ActionIcon = ({ action, ...props }) => {
-  const icons = {
-    rock: FaHandRock,
-    paper: FaHandPaper,
-    scissors: FaHandScissors,
-  };
-  const Icon = icons[action];
-  return <Icon {...props} />;
-};
-const Player = ({ name = "Player", score = 0, action = "rock" }) => {
-  return (
-    <div className="player">
-      <div className="score">{`${name}: ${score}`}</div>
-      <div className="action">
-        <ActionIcon action={action} size={60} />
-      </div>
-    </div>
-  );
-};
-const calculateWinner = (action1, action2) => {
+function calculateWinner (action1, action2) {
   if (action1 === action2) {
     return 0;
   } else if (actions[action1] === action2) {
@@ -46,14 +23,34 @@ const calculateWinner = (action1, action2) => {
   //this should be never happened
   return null;
 };
-const ActionButton = ({ action = "rock", onActionSelected }) => {
+
+function ActionIcon ({ action, ...props }) {
+  const icons = {
+    rock: FaHandRock,
+    paper: FaHandPaper,
+    scissors: FaHandScissors,
+  };
+  const Icon = icons[action];
+  return (<Icon {...props} />);
+};
+function Player ({ name = "Player", score = 0, action = "rock" })  {
+  return (
+    <div className="player">
+      <div className="score">{`${name}: ${score}`}</div>
+      <div className="action">
+      {action && <ActionIcon action={action} size={60} />}
+      </div>
+    </div>
+  );
+};
+function ActionButton ({ action = "rock", onActionSelected })  {
   return (
     <button className="round-btn" onClick={() => onActionSelected(action)}>
-      <ActionIcon action={action} size={20} />
+      {action &&<ActionIcon action={action} size={20} />}
     </button>
   );
 };
-const ShowWinner = ({ winner = 0 }) => {
+function ShowWinner  ({ winner = 0 }) {
   const text = {
     "-1": "You Win!",
     0: "It's a Tie",
@@ -61,7 +58,7 @@ const ShowWinner = ({ winner = 0 }) => {
   };
   return (<h2>{text[winner]}</h2>);
 };
-function App() {
+export function App() {
   const [playerAction, setPlayerAction] = useState("");
   const [computerAction, setComputerAction] = useState("");
   const [playerScore, setPlayerScore] = useState(0);
